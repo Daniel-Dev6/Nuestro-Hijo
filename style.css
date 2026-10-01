@@ -55,7 +55,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 10px;
+    font-size: clamp(11px, 1vw, 15px);
     font-weight: 700;
     letter-spacing: 0.14em;
 }
@@ -101,7 +101,7 @@ body {
     gap: 10px;
     margin: 0 0 24px 5px;
     color: var(--muted);
-    font-size: 11px;
+    font-size: clamp(11px, 1.1vw, 15px);
     font-weight: 700;
     letter-spacing: 0.16em;
 }
@@ -118,12 +118,15 @@ h1 {
     font-size: clamp(76px, 10.7vw, 154px);
     font-weight: 600;
     line-height: 0.82;
-    letter-spacing: 0;
+    letter-spacing: -0.06em;
+    text-wrap: balance;
+    text-shadow: 0 1px 0 rgba(23, 34, 31, 0.06);
 }
 
 h1 span {
     color: transparent;
     -webkit-text-stroke: 1.5px var(--ink);
+    text-shadow: none;
 }
 
 h1 i {
@@ -134,7 +137,7 @@ h1 i {
 .intro__note {
     margin: 32px 0 0 6px;
     color: var(--muted);
-    font-size: 15px;
+    font-size: clamp(15px, 1.8vw, 20px);
     font-weight: 500;
 }
 
@@ -147,7 +150,7 @@ h1 i {
     align-items: center;
     gap: 10px;
     color: var(--muted);
-    font-size: 9px;
+    font-size: clamp(10px, 1vw, 14px);
     font-weight: 700;
     letter-spacing: 0.15em;
     animation: rise-in 900ms 300ms ease-out both;
@@ -162,7 +165,7 @@ h1 i {
 .bottomline {
     bottom: 38px;
     color: var(--muted);
-    font-size: 9px;
+    font-size: clamp(10px, 1vw, 14px);
 }
 
 @keyframes rise-in {
@@ -196,27 +199,39 @@ h1 i {
 
     .intro__eyebrow {
         margin-bottom: 20px;
-        font-size: 9px;
+        font-size: clamp(10px, 2.8vw, 13px);
     }
 
     h1 {
-        font-size: clamp(80px, 21vw, 132px);
+        font-size: clamp(96px, 23vw, 146px);
+        letter-spacing: -0.08em;
+        line-height: 0.78;
+    }
+
+    h1 span {
+        -webkit-text-stroke: 1.2px var(--ink);
     }
 
     .intro__note {
         margin-top: 23px;
-        font-size: 14px;
+        font-size: clamp(15px, 4vw, 18px);
+        letter-spacing: 0.02em;
     }
 
     .scene-caption {
         right: 28px;
         bottom: auto;
         top: 53%;
-        font-size: 8px;
+        font-size: clamp(9px, 2.3vw, 12px);
     }
 
     .bottomline {
         bottom: 24px;
+        font-size: clamp(10px, 2.4vw, 13px);
+    }
+
+    .topline {
+        font-size: clamp(10px, 2.5vw, 13px);
     }
 }
 
