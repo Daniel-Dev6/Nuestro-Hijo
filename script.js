@@ -9,11 +9,11 @@ const pointer = new THREE.Vector2();
 const targetRotation = new THREE.Vector2();
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-camera.position.set(0, 0, 7.2);
+camera.position.set(0, 0, 8.2);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.15;
+renderer.toneMappingExposure = 1.35;
 scene.add(sculpture);
 
 scene.add(new THREE.HemisphereLight(0xffffff, 0x64736a, 2.1));
@@ -67,8 +67,8 @@ const starMaterial = new THREE.MeshPhysicalMaterial({
 
 const star = new THREE.Mesh(starGeometry, starMaterial);
 star.rotation.set(-0.2, 0.15, 0.12);
-star.scale.set(1.08, 1.08, 1.08);
-star.position.set(0.9, 0.18, 0.15);
+star.scale.set(1.3, 1.3, 1.3);
+star.position.set(1.4, 0.3, 0.2);
 sculpture.add(star);
 
 const trail = new THREE.Mesh(
@@ -88,7 +88,8 @@ const trail = new THREE.Mesh(
 );
 trail.rotation.z = -Math.PI / 2;
 trail.rotation.y = 0.35;
-trail.position.set(-0.72, 0.12, -0.4);
+trail.position.set(-0.95, 0.16, -0.5);
+trail.scale.set(1.2, 1.2, 1.2);
 sculpture.add(trail);
 
 const trailGlow = new THREE.Mesh(
@@ -102,24 +103,26 @@ const trailGlow = new THREE.Mesh(
 );
 trailGlow.rotation.z = -Math.PI / 2;
 trailGlow.rotation.y = 0.15;
-trailGlow.position.set(-1.5, 0.18, -0.5);
+trailGlow.position.set(-1.8, 0.2, -0.6);
+trailGlow.scale.set(1.25, 1.25, 1.25);
 sculpture.add(trailGlow);
 
 const spark = new THREE.Mesh(
 	new THREE.SphereGeometry(0.085, 16, 16),
 	new THREE.MeshBasicMaterial({ color: 0xfff0c2, transparent: true, opacity: 0.8 })
 );
-spark.position.set(-1.8, 0.3, -0.55);
+spark.position.set(-2.2, 0.35, -0.7);
+spark.scale.set(1.25, 1.25, 1.25);
 sculpture.add(spark);
 
 function resizeScene() {
 	const { clientWidth, clientHeight } = canvas;
 	renderer.setSize(clientWidth, clientHeight, false);
 	camera.aspect = clientWidth / clientHeight;
-	camera.position.z = clientWidth < 700 ? 8 : 7.2;
+	camera.position.z = clientWidth < 700 ? 9 : 8.2;
 	camera.updateProjectionMatrix();
-	sculpture.position.x = clientWidth < 700 ? 0 : 1.15;
-	sculpture.scale.setScalar(clientWidth < 700 ? 0.78 : 1);
+	sculpture.position.x = clientWidth < 700 ? 0.2 : 1.4;
+	sculpture.scale.setScalar(clientWidth < 700 ? 0.9 : 1.1);
 }
 
 const resizeObserver = new ResizeObserver(resizeScene);
