@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f1f3ed">
+    <title>Hola, Daniel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
+            }
+        }
+    </script>
+</head>
+<body>
+    <main class="welcome" aria-labelledby="welcome-title">
+        <canvas class="scene" aria-hidden="true"></canvas>
+        <div class="topline" aria-hidden="true">
+            <span class="topline__mark"></span>
+            <span>UN ESPACIO PARA TI</span>
+            <span class="topline__index">01 / 01</span>
+        </div>
+        <section class="intro">
+            <p class="intro__eyebrow"><span></span> QUE BUENO VERTE</p>
+            <h1 id="welcome-title">Hola,<br><span>Daniel</span><i>.</i></h1>
+            <p class="intro__note">Tu espacio. Tu momento. Tu Mundo</p>
+        </section>
+        <div class="scene-caption" aria-hidden="true">
+            <span class="scene-caption__line"></span>
+            <span>ESTRELLA EN MOVIMIENTO</span>
+        </div>
+        <div class="bottomline" aria-hidden="true">
+            <span>Con Amor Tu Madre Alejandra Y Tu Padre Daniel</span>
+            <span class="bottomline__dot"></span>
+        </div>
+    </main>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
