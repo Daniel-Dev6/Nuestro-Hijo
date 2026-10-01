@@ -55,18 +55,62 @@ const starGeometry = new THREE.ExtrudeGeometry(starShape, {
 });
 starGeometry.center();
 
-const star = new THREE.Mesh(
-	starGeometry,
+const starMaterial = new THREE.MeshPhysicalMaterial({
+	color: 0xf7b267,
+	roughness: 0.18,
+	metalness: 0.06,
+	clearcoat: 1,
+	clearcoatRoughness: 0.12,
+	emissive: 0xff8a4c,
+	emissiveIntensity: 0.45
+});
+
+const star = new THREE.Mesh(starGeometry, starMaterial);
+star.rotation.set(-0.2, 0.15, 0.12);
+star.scale.set(1.08, 1.08, 1.08);
+star.position.set(0.9, 0.18, 0.15);
+sculpture.add(star);
+
+const trail = new THREE.Mesh(
+	new THREE.ConeGeometry(0.14, 1.8, 18),
 	new THREE.MeshPhysicalMaterial({
-		color: 0xee684b,
-		roughness: 0.22,
-		metalness: 0.16,
+		color: 0xffd6a5,
+		emissive: 0xffb067,
+		emissiveIntensity: 0.7,
+		transparent: true,
+		opacity: 0.72,
+		roughness: 0.4,
+		metalness: 0.15,
 		clearcoat: 0.9,
-		clearcoatRoughness: 0.15
+		clearcoatRoughness: 0.2,
+		side: THREE.DoubleSide
 	})
 );
-star.rotation.set(-0.2, 0.15, 0.12);
-sculpture.add(star);
+trail.rotation.z = -Math.PI / 2;
+trail.rotation.y = 0.35;
+trail.position.set(-0.72, 0.12, -0.4);
+sculpture.add(trail);
+
+const trailGlow = new THREE.Mesh(
+	new THREE.ConeGeometry(0.24, 1.25, 12),
+	new THREE.MeshBasicMaterial({
+		color: 0xffe6a7,
+		transparent: true,
+		opacity: 0.24,
+		side: THREE.DoubleSide
+	})
+);
+trailGlow.rotation.z = -Math.PI / 2;
+trailGlow.rotation.y = 0.15;
+trailGlow.position.set(-1.5, 0.18, -0.5);
+sculpture.add(trailGlow);
+
+const spark = new THREE.Mesh(
+	new THREE.SphereGeometry(0.085, 16, 16),
+	new THREE.MeshBasicMaterial({ color: 0xfff0c2, transparent: true, opacity: 0.8 })
+);
+spark.position.set(-1.8, 0.3, -0.55);
+sculpture.add(spark);
 
 function resizeScene() {
 	const { clientWidth, clientHeight } = canvas;
@@ -99,6 +143,9 @@ function animate() {
 		sculpture.rotation.y += (targetRotation.y - sculpture.rotation.y) * 0.035;
 		sculpture.rotation.y += 0.002;
 		sculpture.position.y = Math.sin(elapsed * 0.8) * 0.08;
+		trail.rotation.z = -Math.PI / 2 + Math.sin(elapsed * 1.9) * 0.18;
+		trailGlow.rotation.z = -Math.PI / 2 + Math.sin(elapsed * 1.4) * 0.12;
+		spark.position.y = 0.3 + Math.sin(elapsed * 3.4) * 0.12;
 	}
 
 	renderer.render(scene, camera);
