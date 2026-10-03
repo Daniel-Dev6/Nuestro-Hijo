@@ -5,7 +5,6 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
 const sculpture = new THREE.Group();
-const pointer = new THREE.Vector2();
 const targetRotation = new THREE.Vector2();
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -71,50 +70,6 @@ star.scale.set(1.3, 1.3, 1.3);
 star.position.set(1.4, 0.3, 0.2);
 sculpture.add(star);
 
-const trail = new THREE.Mesh(
-	new THREE.ConeGeometry(0.14, 1.8, 18),
-	new THREE.MeshPhysicalMaterial({
-		color: 0xffd6a5,
-		emissive: 0xffb067,
-		emissiveIntensity: 0.7,
-		transparent: true,
-		opacity: 0.72,
-		roughness: 0.4,
-		metalness: 0.15,
-		clearcoat: 0.9,
-		clearcoatRoughness: 0.2,
-		side: THREE.DoubleSide
-	})
-);
-trail.rotation.z = -Math.PI / 2;
-trail.rotation.y = 0.35;
-trail.position.set(-0.95, 0.16, -0.5);
-trail.scale.set(1.2, 1.2, 1.2);
-sculpture.add(trail);
-
-const trailGlow = new THREE.Mesh(
-	new THREE.ConeGeometry(0.24, 1.25, 12),
-	new THREE.MeshBasicMaterial({
-		color: 0xffe6a7,
-		transparent: true,
-		opacity: 0.24,
-		side: THREE.DoubleSide
-	})
-);
-trailGlow.rotation.z = -Math.PI / 2;
-trailGlow.rotation.y = 0.15;
-trailGlow.position.set(-1.8, 0.2, -0.6);
-trailGlow.scale.set(1.25, 1.25, 1.25);
-sculpture.add(trailGlow);
-
-const spark = new THREE.Mesh(
-	new THREE.SphereGeometry(0.085, 16, 16),
-	new THREE.MeshBasicMaterial({ color: 0xfff0c2, transparent: true, opacity: 0.8 })
-);
-spark.position.set(-2.2, 0.35, -0.7);
-spark.scale.set(1.25, 1.25, 1.25);
-sculpture.add(spark);
-
 function resizeScene() {
 	const { clientWidth, clientHeight } = canvas;
 	renderer.setSize(clientWidth, clientHeight, false);
@@ -130,10 +85,8 @@ resizeObserver.observe(canvas);
 resizeScene();
 
 window.addEventListener("pointermove", (event) => {
-	pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-	pointer.y = (event.clientY / window.innerHeight) * 2 - 1;
-	targetRotation.x = pointer.y * 0.2;
-	targetRotation.y = pointer.x * 0.28;
+	targetRotation.x = ((event.clientY / window.innerHeight) * 2 - 1) * 0.2;
+	targetRotation.y = ((event.clientX / window.innerWidth) * 2 - 1) * 0.28;
 }, { passive: true });
 
 const clock = new THREE.Clock();
@@ -146,9 +99,6 @@ function animate() {
 		sculpture.rotation.y += (targetRotation.y - sculpture.rotation.y) * 0.035;
 		sculpture.rotation.y += 0.002;
 		sculpture.position.y = Math.sin(elapsed * 0.8) * 0.08;
-		trail.rotation.z = -Math.PI / 2 + Math.sin(elapsed * 1.9) * 0.18;
-		trailGlow.rotation.z = -Math.PI / 2 + Math.sin(elapsed * 1.4) * 0.12;
-		spark.position.y = 0.3 + Math.sin(elapsed * 3.4) * 0.12;
 	}
 
 	renderer.render(scene, camera);

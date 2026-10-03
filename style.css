@@ -142,27 +142,30 @@ h1 i {
 }
 
 .letter-button {
+    position: relative;
     display: inline-flex;
-    min-height: 48px;
+    min-height: 54px;
     align-items: center;
     gap: 18px;
     margin: 24px 0 0 6px;
-    padding: 0 18px;
-    border: 1px solid rgba(23, 34, 31, 0.2);
+    padding: 0 22px;
+    border: 0;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
-    color: var(--ink);
+    background: #16864f;
+    color: #fff;
     font: inherit;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
     cursor: pointer;
-    transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+    box-shadow: 0 8px 22px rgba(22, 134, 79, 0.25);
+    animation: cta-pulse 2.4s ease-out infinite;
+    transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .letter-button:hover {
-    transform: translateY(-2px);
-    border-color: var(--coral);
-    background: #fff;
+    transform: translateY(-3px) scale(1.02);
+    background: #106e40;
+    box-shadow: 0 12px 28px rgba(22, 134, 79, 0.32);
 }
 
 .letter-button:focus-visible,
@@ -172,8 +175,23 @@ h1 i {
 }
 
 .letter-button span {
-    color: var(--coral);
-    font-size: 18px;
+    color: #d4ffdf;
+    font-size: 20px;
+    transition: transform 180ms ease;
+}
+
+.letter-button:hover span {
+    transform: translate(3px, -3px);
+}
+
+@keyframes cta-pulse {
+    0%, 100% {
+        box-shadow: 0 8px 22px rgba(22, 134, 79, 0.25), 0 0 0 0 rgba(45, 182, 113, 0.25);
+    }
+
+    55% {
+        box-shadow: 0 8px 22px rgba(22, 134, 79, 0.25), 0 0 0 9px rgba(45, 182, 113, 0);
+    }
 }
 
 .letter {
@@ -227,6 +245,38 @@ h1 i {
     font-size: clamp(28px, 7vw, 40px);
     line-height: 1.08;
     letter-spacing: -0.04em;
+}
+
+.letter__adventures-title {
+    margin: 28px 0 12px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 18px;
+}
+
+.letter__adventures {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.letter__adventures li {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 10px;
+    padding: 13px 15px;
+    border: 1px solid rgba(23, 34, 31, 0.08);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #4f5b55;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.letter__adventures li > span:first-child {
+    color: var(--coral);
+    font-size: 17px;
 }
 
 .letter > p:not(.letter__eyebrow) {
@@ -369,5 +419,9 @@ h1 i {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
+    }
+
+    .letter-button {
+        animation: none;
     }
 }
