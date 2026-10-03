@@ -141,6 +141,105 @@ h1 i {
     font-weight: 500;
 }
 
+.letter-button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    gap: 18px;
+    margin: 24px 0 0 6px;
+    padding: 0 18px;
+    border: 1px solid rgba(23, 34, 31, 0.2);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--ink);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.letter-button:hover {
+    transform: translateY(-2px);
+    border-color: var(--coral);
+    background: #fff;
+}
+
+.letter-button:focus-visible,
+.letter__close:focus-visible {
+    outline: 3px solid var(--coral);
+    outline-offset: 3px;
+}
+
+.letter-button span {
+    color: var(--coral);
+    font-size: 18px;
+}
+
+.letter {
+    width: min(520px, calc(100% - 32px));
+    max-height: min(85svh, 680px);
+    padding: clamp(26px, 6vw, 48px);
+    overflow-y: auto;
+    border: 1px solid rgba(23, 34, 31, 0.12);
+    border-radius: 24px;
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow: 0 24px 80px rgba(23, 34, 31, 0.2);
+}
+
+.letter::backdrop {
+    background: rgba(23, 34, 31, 0.48);
+    backdrop-filter: blur(5px);
+}
+
+.letter form {
+    display: flex;
+    justify-content: flex-end;
+    margin: -12px -12px 18px;
+}
+
+.letter__close {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(23, 34, 31, 0.07);
+    color: var(--ink);
+    font: inherit;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.letter__eyebrow {
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+
+.letter h2 {
+    margin: 0 0 20px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(28px, 7vw, 40px);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+}
+
+.letter > p:not(.letter__eyebrow) {
+    color: #4f5b55;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.letter .letter__signoff {
+    margin-top: 28px;
+    color: var(--ink) !important;
+}
+
 .scene-caption {
     position: absolute;
     z-index: 2;
@@ -213,9 +312,14 @@ h1 i {
     }
 
     .intro__note {
-        margin-top: 23px;
+        max-width: 340px;
+        margin-top: 20px;
         font-size: clamp(15px, 4vw, 18px);
         letter-spacing: 0.02em;
+    }
+
+    .letter-button {
+        margin-top: 18px;
     }
 
     .scene-caption {
@@ -232,6 +336,29 @@ h1 i {
 
     .topline {
         font-size: clamp(10px, 2.5vw, 13px);
+    }
+}
+
+@media (max-width: 700px) and (max-height: 620px) {
+    .intro {
+        bottom: 12%;
+    }
+
+    h1 {
+        font-size: clamp(76px, 19vw, 112px);
+    }
+
+    .intro__eyebrow {
+        margin-bottom: 14px;
+    }
+
+    .intro__note {
+        margin-top: 14px;
+    }
+
+    .letter-button {
+        min-height: 44px;
+        margin-top: 12px;
     }
 }
 

@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f1f3ed">
-    <title>Hola HIjo</title>
+    <meta name="description" content="Una bienvenida llena de amor para nuestro hijo, que pronto llegará.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hola, hijo">
+    <meta property="og:description" content="Una bienvenida llena de amor para nuestro hijo, que pronto llegará.">
+    <title>Hola, hijo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -28,17 +32,34 @@
         <section class="intro">
             <p class="intro__eyebrow"><span></span> QUE BUENO VERTE</p>
             <h1 id="welcome-title">Hola<br><span>Hijo</span><i>.</i></h1>
-            <p class="intro__note">Tu espacio. Tu momento. Tu Mundo</p>
+            <p class="intro__note">Aún no llegas, y ya llenas nuestras vidas de amor.</p>
+            <button class="letter-button" type="button" aria-haspopup="dialog" aria-controls="letter-dialog">
+                Leer nuestra carta <span aria-hidden="true">↗</span>
+            </button>
         </section>
         <div class="scene-caption" aria-hidden="true">
             <span class="scene-caption__line"></span>
-            <span>Un Regalo Especial</span>
+            <span>Una promesa para ti</span>
         </div>
         <div class="bottomline" aria-hidden="true">
             <span>Con Amor Tu Madre Alejandra Y Tu Padre Daniel</span>
             <span class="bottomline__dot"></span>
         </div>
     </main>
+    <dialog class="letter" id="letter-dialog" aria-labelledby="letter-title">
+        <form method="dialog">
+            <button class="letter__close" aria-label="Cerrar carta">×</button>
+        </form>
+        <p class="letter__eyebrow">PARA EL DÍA EN QUE LLEGUES</p>
+        <h2 id="letter-title">Te estamos esperando, hijo.</h2>
+        <p>No conocemos todavía tu carita, pero ya te queremos con todo el corazón. Estamos preparando un mundo lleno de abrazos, paciencia y aventuras para compartir contigo.</p>
+        <p>Cuando leas esto, recuerda siempre que antes de conocerte ya eras nuestro sueño más bonito. Aquí estaremos, para cuidarte, escucharte y acompañarte en cada paso.</p>
+        <p class="letter__signoff">Con todo nuestro amor,<br><strong>Mamá Alejandra y papá Daniel</strong></p>
+    </dialog>
+    <script>
+        const letterDialog = document.querySelector("#letter-dialog");
+        document.querySelector(".letter-button").addEventListener("click", () => letterDialog.showModal());
+    </script>
     <script type="module" src="script.js"></script>
 </body>
 </html>
